@@ -7,15 +7,17 @@
     <li class="nav-item">
       <a class="nav-link" href="">アニメ検索</a>
     </li>
-
+    @guest
     <li class="nav-item">
-      <a class="nav-link" href="">ログイン</a>
+      <a class="nav-link" href="{{ route('login')}}">ログイン</a>
     </li>
-
+    @endguest
+    @auth
     <li class="nav-item">
       <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>語る</a>
     </li>
-
+    @endauth
+    @auth
     <!-- Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -33,10 +35,11 @@
         </button>
       </div>
     </li>
-    <form id="logout-button" method="POST" action="">
+    <form id="logout-button" method="POST" action="{{ route('logout')}}">
+      @csrf
     </form>
     <!-- Dropdown -->
-
+    @endauth
   </ul>
 
 </nav>

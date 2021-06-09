@@ -15,3 +15,10 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 Route::get('/', 'HomeController@top');
+
+
+
+Route::namespace('Post')->group(function(){
+    Route::resource('/posts', 'PostController')->except(['index']);
+    Route::get('/posts/works/{title}', 'PostController@anime_index');
+});
