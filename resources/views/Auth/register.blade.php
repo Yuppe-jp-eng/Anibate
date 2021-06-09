@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
   <div class="container">
@@ -9,6 +9,7 @@
           <div class="card-body text-center">
             <h2 class="h3 card-title text-center mt-2">ユーザー登録</h2>
 
+            @include('errors.error_card')
             <div class="card-text">
               {{-- フォーム部分--}}
               <form method="POST" action="{{ route('register') }}">

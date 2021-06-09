@@ -1,9 +1,10 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('title', 'Anibate')
     
 @section('content')
-    @include('nav')
+    @include('layouts.nav')
+    @guest
     <div class="container mt-5" style="text-align: center">
       <h1>Anibate</h1>
       <p>Anibateはアニメをもっと身近に感じるためのプラットフォームです。</p>
@@ -13,4 +14,5 @@
       <a href="{{ route('register') }}" class="btn btn-outline-danger btn-lg active" role="button" aria-pressed="true"
       >登録する</a>
     </div>
+    @endguest
 @endsection
