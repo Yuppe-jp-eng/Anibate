@@ -56,5 +56,12 @@ class LoginController extends Controller
             $this->guard()->login($user, true);
             return $this->sendFailedLoginResponse($request);
         }
+
+        #アプリケーション内にEmail合致するユーザー情報がなかった場合
+        return redirect()->route('register.{provider}', [
+            'provider' => $provider,
+            'email' => $providerUser->getEmail(),
+            'token' => $providerUser->token,
+        ]);
     }
 }
