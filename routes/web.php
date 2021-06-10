@@ -14,6 +14,10 @@
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
+Route::prefix('login')->name('login.')->group(function() {
+    Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
+    Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
+});
 Route::get('/', 'HomeController@top');
 
 
@@ -22,3 +26,4 @@ Route::namespace('Post')->group(function(){
     Route::resource('/posts', 'PostController')->except(['index']);
     Route::get('/posts/works/{title}', 'PostController@anime_index');
 });
+
