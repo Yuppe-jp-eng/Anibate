@@ -14,7 +14,7 @@
     @endguest
     @auth
     <li class="nav-item">
-      <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>語る</a>
+      <a class="nav-link" href="{{ route('posts.create') }}"><i class="fas fa-pen mr-1"></i>語る</a>
     </li>
     @endauth
     @auth
