@@ -28,12 +28,12 @@ Route::prefix('register')->name('register.')->group(function() {
 });
 
 
-Route::get('/', 'HomeController@top');
+Route::get('/', 'HomeController@top')->name('top');
 
 
 
 Route::namespace('Post')->group(function(){
-    Route::resource('/posts', 'PostController')->except(['index']);
+    Route::resource('/posts', 'PostController')->except(['index'])->middleware('auth');
     Route::get('/posts/works/{title}', 'PostController@anime_index');
 });
 
