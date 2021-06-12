@@ -24,10 +24,31 @@ class PostController extends Controller
     {
         $post->fill($request->all());
         $post->user_id = $request->user()->id;
-        // if ($request->comments_allowed) {
-        //     $post->comments_allowed = $request->comments_allowed;
-        // }
         $post->save();
+        return redirect()->route('top');
+    }
+
+    public function edit(Post $post)
+    {
+        return view('posts.edit', ['post' => $post]);
+    }
+
+    public function update(PostRequest $request, Post $post)
+    {
+        if ($request->comments_allowed == null)
+        {
+            $post->comments_allowed = "true";
+        }else
+        {
+            $post->comments_allowed = "false";
+        }
+        $post->fill($request->all())->save();
+        return redirect()->route('top');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
         return redirect()->route('top');
     }
 }
