@@ -87,9 +87,15 @@
           <div class="card-text">
             {!! nl2br(e( $post->body )) !!}
           </div>
-          <div style="text-align: right">
+          <div class="card-body pt-0 pb-2 pl-3 row">
+            <div class="card-text" style="display:inline-block">
+              <post-like>
+              </post-like>
+            </div>
             @if ($post->comments_allowed)
-            <a href="#">コメント</a>
+            <div class="ml-auto" style="display:inline-block" >
+              <a href="#">コメント</a>
+            </div>
             @endif
           </div>
         </div>
