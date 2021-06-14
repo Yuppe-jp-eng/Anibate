@@ -89,7 +89,8 @@
           </div>
           <div class="card-body pt-0 pb-2 pl-3 row">
             <div class="card-text" style="display:inline-block">
-              <post-like>
+              <post-like
+              :initial-is-liked-by='@json($post->isLikedBy(Auth::user()))'>
               </post-like>
             </div>
             @if ($post->comments_allowed)
