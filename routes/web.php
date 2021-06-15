@@ -27,13 +27,21 @@ Route::prefix('register')->name('register.')->group(function() {
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
 
-
+#トップ画面
 Route::get('/', 'HomeController@top')->name('top');
 
-
-
+#投稿
 Route::namespace('Post')->group(function(){
     Route::resource('/posts', 'PostController')->except(['index'])->middleware('auth');
     Route::get('/posts/works/{title}', 'PostController@anime_index');
+});
+
+#いいね
+Route::namespace('Favorite')->group(function(){
+    Route::prefix('posts')->name('favorites.')->group(function(){
+    Route::put('/{post}/like', 'FavoriteController@like')->name('like')->middleware('auth');
+    Route::delete('/{post}/like', 'FavoriteController@unlike')->name('unlike')->middleware('auth');
+    });
+
 });
 
