@@ -90,7 +90,10 @@
           <div class="card-body pt-0 pb-2 pl-3 row">
             <div class="card-text" style="display:inline-block">
               <post-like
-              :initial-is-liked-by='@json($post->isLikedBy(Auth::user()))'>
+              :initial-is-liked-by='@json($post->isLikedBy(Auth::user()))'
+              :initial-count-likes='@json($post->count_likes)'
+              :authorized='@json(Auth::check())'
+              endpoint='{{ route('favorites.like', ['post' => $post]) }}'>
               </post-like>
             </div>
             @if ($post->comments_allowed)
