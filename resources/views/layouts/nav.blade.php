@@ -5,7 +5,7 @@
   <ul class="navbar-nav ml-auto">
 
     <li class="nav-item">
-      <a class="nav-link" href="">アニメ検索</a>
+      <a class="nav-link" href="{{ route('search')}}">アニメ検索</a>
     </li>
     @guest
     <li class="nav-item">
