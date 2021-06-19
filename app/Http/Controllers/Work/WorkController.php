@@ -9,12 +9,18 @@ class WorkController extends Controller
 {
     public function search()
     {
-        return view('works.index');
+        $token = config('services.annict_token');
+        return view('works.index', ['token' => $token]);
     }
 
-    public function show()
+    public function show(Request $request)
     {
-
+        $token = config('services.annict_token');
+        $work_id = $request->query('id');
+        return view('works.show', [
+            'work_id' => $work_id,
+            'token' => $token,
+        ]);
     }
 
     public function create()

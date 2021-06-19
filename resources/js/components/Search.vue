@@ -8,7 +8,7 @@
       v-model="keyword" v-on:keyup.enter="search">
     </div>
     <div style="text-align:right">
-      <button class="btn ripe-malinka-gradient" v-on:click="getThisSeasonWorks" style="color:white">今季アニメ</button>
+      <button class="btn ripe-malinka-gradient" v-on:click="getThisSeasonWorks" style="color:white">今期アニメ</button>
     </div>
     <div class="row">
     <div v-for="work in works" v-bind:key="work.id" style="display:inline-block; text-align:center" class="col-md-4 col-xs-12">
@@ -21,16 +21,22 @@
 </template>
 <script>
 export default {
+  props: {
+    token: {
+      type: String,
+    },
+  },
   data() {
     return {
       works: null,
       keyword: '',
+      url: 'https://api.annict.com/v1/works?access_token=' + this.token,
     }
   },
   methods: {
     search() {
       const queries = {filter_title: this.keyword}
-      axios.get('https://api.annict.com/v1/works?access_token=T_dJOLI9cNRckQVs9ioKE1Mp4uK7Z8N4QdXaNFj7vac', {params: queries})
+      axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
       })
@@ -41,7 +47,7 @@ export default {
     getThisSeasonWorks() {
       this.works = null
       const queries = {filter_season: "2021-spring", sort_watchers_count: "desc", per_page: 50}
-      axios.get('https://api.annict.com/v1/works?access_token=T_dJOLI9cNRckQVs9ioKE1Mp4uK7Z8N4QdXaNFj7vac', {params: queries})
+      axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
       })
