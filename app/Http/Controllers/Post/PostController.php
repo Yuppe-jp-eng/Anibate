@@ -15,10 +15,10 @@ class PostController extends Controller
         $this->authorizeResource(Post::class, 'post');
     }
     
-    public function create()
+    public function create(?Request $request)
     {
-        $title = request('title');
-        $episode = request('episode');
+        $title = $request->query('title');
+        $episode = $request->query('episode');
 
         return view('posts.create', [
             'title' => $title,

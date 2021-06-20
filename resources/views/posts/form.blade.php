@@ -2,8 +2,8 @@
 <div class="form-outline mt-3">
   <input type="text" id="form1" class="form-control" name= "title" value="{{ $title ?? old('title') ?? $post->title ?? '' }}"/>
   <label class="form-label" for="form1">アニメタイトル</label>
-  <input type="text" id="form2" class="form-control" name = "episode" value="{{ $title ?? old('episode') ?? $post->episode ?? '' }}"/>
-  <label class="form-label" for="form2">話数</label>
+  <input type="text" id="form2" class="form-control" name = "episode" value="{{ $episode ?? old('episode') ?? $post->episode ?? '' }}"/>
+  <label class="form-label" for="form2">エピソード</label>
 </div>
 <div class="form-group">
   <label></label>
