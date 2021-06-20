@@ -78,10 +78,10 @@
           @endif
         </div>
         <div class="card-body pt-0 pb-2">
-            <h3 class="h4 card-title" style="display: inline-block">
+            <h3 class="h5 card-title mr-3" style="display: inline-block">
               {{ $post->title }}
             </h3>
-            <h3 class="h4 card-title" style="display: inline-block">
+            <h3 class="h5 card-title" style="display: inline-block">
               {{ $post->episode }}
             </h3>
           <div class="card-text">

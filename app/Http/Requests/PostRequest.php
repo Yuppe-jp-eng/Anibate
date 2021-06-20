@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'required|max:50',
-            'episode' => 'max:20',
+            'episode' => 'max:30',
             'body' => 'required|max:500',
         ];
     }
