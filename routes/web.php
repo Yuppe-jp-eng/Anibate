@@ -50,3 +50,12 @@ Route::namespace('Work')->group(function(){
     Route::resource('works', 'WorkController', ['only' => ['create', 'store', 'show']]);
     Route::get('searches', 'WorkController@search')->name('search');
 });
+
+#ユーザー詳細、フォロー
+Route::namespace('User')->prefix('users')->name('users.')->group(function(){
+    Route::get('/{name}', 'UserController@show')->name('show');
+    Route::middleware('auth')->group(function(){
+        Route::put('/{name}/follow', 'FollowController@follow')->name('follow');
+        Route::delete('/{name}/follow', 'FollowController@unfollow')->name('unfollow');
+    });
+});
