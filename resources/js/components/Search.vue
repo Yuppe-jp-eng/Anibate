@@ -46,7 +46,7 @@ export default {
     },
     getThisSeasonWorks() {
       this.works = null
-      const queries = {filter_season: "2021-spring", sort_watchers_count: "desc", per_page: 50}
+      const queries = {filter_season: "2021-summer", sort_watchers_count: "desc", per_page: 50}
       axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
