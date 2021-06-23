@@ -54,6 +54,8 @@ Route::namespace('Work')->group(function(){
 #ユーザー詳細、フォロー
 Route::namespace('User')->prefix('users')->name('users.')->group(function(){
     Route::get('/{name}', 'UserController@show')->name('show');
+    Route::get('/{name}/followers', 'FollowController@followers')->name('followers');
+    Route::get('/{name}/followings', 'FollowController@followings')->name('followings');
     Route::middleware('auth')->group(function(){
         Route::put('/{name}/follow', 'FollowController@follow')->name('follow');
         Route::delete('/{name}/follow', 'FollowController@unfollow')->name('unfollow');
