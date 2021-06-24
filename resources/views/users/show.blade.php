@@ -8,10 +8,11 @@
     <div class="card mt-3">
       <div class="card-body">
         <div class="d-flex flex-row">
-          <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
-            <i class="fas fa-user-circle fa-3x"></i>
+          <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark" style="display: inline">
+            <img src="{{ $user->profile_image }}" alt="画像" width="60px" height="60px" style="border-radius: 50%" class="user-image">
           </a>
-          <p class="ml-3">ユーザーの一言</p>
+          <p class="ml-3">{{ $user->description }}</p>
+          <a href="{{ route('users.edit', ['name' => $user->name] )}}" class="ml-auto"><i class="fas fa-user-edit fa-x red-text"></i></a>
           @if ($user->id !== Auth::id())
               <follow-button
               class="ml-auto"

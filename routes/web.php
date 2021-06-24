@@ -57,6 +57,8 @@ Route::namespace('User')->prefix('users')->name('users.')->group(function(){
     Route::get('/{name}/followers', 'FollowController@followers')->name('followers');
     Route::get('/{name}/followings', 'FollowController@followings')->name('followings');
     Route::middleware('auth')->group(function(){
+        Route::get('/{name}/edit', 'UserController@edit')->name('edit');
+        Route::patch('/{name}', 'UserController@update')->name('update');
         Route::put('/{name}/follow', 'FollowController@follow')->name('follow');
         Route::delete('/{name}/follow', 'FollowController@unfollow')->name('unfollow');
     });

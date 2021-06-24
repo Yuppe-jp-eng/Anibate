@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('description')->nullable();
-            $table->string('profile_image')->default('user_default.png');
+            $table->string('profile_image')->default('https://anibate-user-image.s3.ap-northeast-1.amazonaws.com/user_default.jpg');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
