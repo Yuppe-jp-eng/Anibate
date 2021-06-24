@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-7 row">
       <div class="col-md-4 mb-3"  v-for="episode in episodes" v-bind:key="episode.id">
-        {{ episode.number_text}}<br><a v-bind:href="'/posts/create?title=' + work.title + '&episode=' + episode.number_text + episode.title">{{ episode.title }}</a>
+        {{ episode.number_text }}<br><a v-bind:href="'/posts/create?title=' + work.title + '&episode=' + episode.number_text + episode.title">{{ episode.title }}</a>
       </div>
     </div>
   </div>

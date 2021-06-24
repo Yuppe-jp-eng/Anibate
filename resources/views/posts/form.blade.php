@@ -4,6 +4,7 @@
   <label class="form-label" for="form1">アニメタイトル</label>
   <input type="text" id="form2" class="form-control" name = "episode" value="{{ $episode ?? old('episode') ?? $post->episode ?? '' }}"/>
   <label class="form-label" for="form2">エピソード</label>
+  
 </div>
 <div class="form-group">
   <label></label>

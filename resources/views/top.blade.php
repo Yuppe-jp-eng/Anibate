@@ -20,8 +20,8 @@
       @foreach($posts as $post)
       <div class="card mt-3">
         <div class="card-body d-flex flex-row">
-          <a href="{{ route('users.show', ['name' => $post->user->name])}}" class="text-dark">
-          <i class="fas fa-user-circle fa-3x mr-1"></i>
+          <a href="{{ route('users.show', ['name' => $post->user->name]) }}" class="text-dark" style="display: inline">
+            <img src="{{ $post->user->profile_image }}" alt="画像" width="60px" height="60px" style="border-radius: 50%">
           </a>
           
           <div>
