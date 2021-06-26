@@ -33,7 +33,7 @@ Route::get('/', 'HomeController@top')->name('top');
 #投稿
 Route::namespace('Post')->group(function(){
     Route::resource('/posts', 'PostController')->except(['index'])->middleware('auth');
-    Route::get('/posts/works/{title}', 'PostController@anime_index');
+    Route::get('/posts/works/{title}', 'PostController@anime_index')->name('title_index');
 });
 
 #いいね

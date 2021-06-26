@@ -1,9 +1,11 @@
 <nav class="navbar navbar-expand navbar-dark ripe-malinka-gradient">
 
-  <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>Anibate</a>
+  <a class="navbar-brand" href="/">Anibate</a>
 
   <ul class="navbar-nav ml-auto">
-
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('top') }}">感想一覧</a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ route('search')}}">アニメ検索</a>
     </li>
