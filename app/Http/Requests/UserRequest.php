@@ -23,9 +23,27 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        if ($this->name !== null) {
+            return [
+                'name' => ['string', 'min:3', 'max:16', 'unique:users'],
+                'profile_image' => ['mimes:jpeg,png'],
+                'description' => ['max:160'],
+            ];
+        }
+        return[
+            'profile_image' => ['mimes:jpeg,png'],
+            'description' => ['max:160'],
         ];
+        }
+
+
+    public function attributes()
+    {
+        return[
+            'name' => 'ユーザー名',
+            'profile_image' => 'ユーザー画像',
+            'description' => '自己紹介文',
+        ];
+
     }
 }

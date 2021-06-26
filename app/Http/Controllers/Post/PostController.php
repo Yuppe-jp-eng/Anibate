@@ -14,7 +14,17 @@ class PostController extends Controller
     {
         $this->authorizeResource(Post::class, 'post');
     }
-    
+
+    public function anime_index(string $title)
+    {
+        $posts = Post::where('title', $title)->get();
+
+        return view('posts.anime_index',[
+            'posts' => $posts,
+            'title' => $title,
+        ]);
+
+    }
     public function create(?Request $request)
     {
         $title = $request->query('title');
