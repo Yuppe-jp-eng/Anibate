@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 class FollowController extends Controller

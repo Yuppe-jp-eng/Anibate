@@ -10,9 +10,9 @@
         @method('PATCH')
         @csrf
         <div class="form-group mt-3">
-          <input type="text" id="form1" class="form-control" name= "name" placeholder="{{ $user->name }}">
           <label class="form-label" for="form1">ユーザー名</label>
-          <textarea name="description" id="form3" rows="5" class="form-control" placeholder="プロフィールを充実させよう">{{ old('description') ?? $user->description ?? ''}}</textarea>
+          <input type="text" id="form1" class="form-control" name= "name" placeholder="{{ $user->name }}">
+          <textarea name="description" id="form3" rows="5" class="form-control mt-3" placeholder="プロフィールを充実させよう">{{ old('description') ?? $user->description ?? ''}}</textarea>
         </div>
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="customFileLang" name="profile_image" value="{{ old('profile_image') }}">

@@ -23,9 +23,15 @@ class WorkController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $title = $request->query('title');
+        $season = $request->query('season');
 
+        return view('works.create',[
+            'title' => $title,
+            'season' => $season,
+        ]);
     }
 
     public function store()
