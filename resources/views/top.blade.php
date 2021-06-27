@@ -17,7 +17,9 @@
     @endguest
 
     <div class="container">
-      @include('layouts.card_list')
+      @foreach ($posts as $post)
+        @include('layouts.card_list')
+      @endforeach
     </div>
 
 @endsection

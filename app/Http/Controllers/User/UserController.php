@@ -14,8 +14,12 @@ class UserController extends Controller
     public function show(string $name)
     {
         $user = User::where('name', $name)->first();
+        $all_posts = $user->posts->sortByDesc('created_at');
+        $favorite_posts = $user->likes->sortByDesc('created_at');
         return view('users.show', [
             'user' => $user,
+            'all_posts' => $all_posts,
+            'favorite_posts' => $favorite_posts,
         ]);
     }
 
@@ -45,10 +49,5 @@ class UserController extends Controller
         }
         $user->save();
         return redirect()->route('users.show', ['name' => $user->name]);
-    }
-
-    public function likes()
-    {
-
     }
 }

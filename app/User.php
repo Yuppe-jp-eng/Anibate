@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
@@ -69,4 +70,15 @@ class User extends Authenticatable
         return $this->followings()->count();
     }
 
+    #Postとの関係
+    public function posts():HasMany
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    #Likeとの関係
+    public function likes():BelongsToMany
+    {
+        return $this->belongsToMany('App\Post', 'likes')->withTimestamps();
+    }
 }

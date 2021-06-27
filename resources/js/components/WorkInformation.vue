@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-    <a href="#" class="btn btn-primary">Myアニメに登録</a>
+    <a v-bind:href="'/works/create?title=' + work.title + '&season=' + work.season_name_text" class="btn btn-primary">Myアニメに登録</a>
     <a v-bind:href="'/posts/create?title=' + work.title" class="btn btn-danger">感想を投稿する！</a>
 </div>
 </div>

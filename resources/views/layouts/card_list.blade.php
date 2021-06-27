@@ -1,4 +1,3 @@
-@foreach($posts as $post)
 <div class="card mt-3">
   <div class="card-body d-flex flex-row">
     <a href="{{ route('users.show', ['name' => $post->user->name]) }}" class="text-dark" style="display: inline">
@@ -93,4 +92,3 @@
     </div>
   </div>
 </div>
-@endforeach

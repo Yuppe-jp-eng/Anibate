@@ -5,46 +5,42 @@
 @section('content')
   @include('layouts.nav')
   <div class="container">
-    <div class="card mt-3">
-      <div class="card-body">
-        <div class="d-flex flex-row">
-          <div class="mr-3">
-            <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark" style="display: inline">
-              <img src="{{ $user->profile_image }}" alt="画像" width="60px" height="60px" style="border-radius: 50%" class="user-image">
-            </a>
-          </div>
-          <div>
-            <h5>{{ $user->name }}</h5>
-            <p class="ml-3 pr-5">{{ $user->description }}</p>
-          </div>
-          @auth
-          @if ($user->id == Auth::id())
-          <a href="{{ route('users.edit', ['name' => $user->name] )}}" class="ml-auto"><i class="fas fa-user-edit fa-x red-text"></i></a>
-          @endif
-          @endauth
-          @if ($user->id !== Auth::id())
-              <follow-button
-              class="ml-auto"
-              :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
-              :authorized='@json(Auth::check())'
-              endpoint="{{ route('users.follow', ['name' => $user->name])}}">
-              </follow-button>
-          @endif
-        </div>
+    @include('users.user')
+    <ul class="nav nav-tabs md-tabs nav-justified mt-3" role="tablist" >
+      <li class="nav-item">
+        <a class="nav-link text-muted active" data-toggle="tab" 
+        href="#post" role="tab">
+          感想
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-muted" data-toggle="tab" 
+        href="#favorite" role="tab">
+          いいね</a>
+      </li>
+      @if ($user->id == Auth::id())
+      <li class="nav-item">
+        <a class="nav-link text-muted" data-toggle="tab" 
+        href="#myanime" role="tab">
+          Myアニメ</a>
+      </li>
+      @endif
+
+    </ul>
+    <div class="tab-content">
+      <div id="post" class="tab-pane active">
+        @foreach ($all_posts as $post)
+          @include('layouts.card_list')
+        @endforeach
       </div>
-      <div class="card-body">
-        <div class="card-text" style="display: flex;align-items:center">
-          <a href="{{ route('users.followings', ['name' => $user->name]) }}" class="text-muted">
-            {{ $user->count_followings }}フォロー
-          </a>
-          <a href="{{ route('users.followers', ['name' => $user->name]) }}" class="text-muted">
-            {{ $user->count_followers }}フォロワー
-          </a>
-          @auth
-          <a href="#" class="btn btn-danger ml-auto">myアニメ</a>
-          @endauth
-        </div>
+      <div id="favorite" class="tab-pane">
+        @foreach ($favorite_posts as $post)
+            @include('layouts.card_list')
+        @endforeach
       </div>
+      <div id="myanime" class="tab-pane active"></div>
     </div>
+
+
   </div>
 @endsection

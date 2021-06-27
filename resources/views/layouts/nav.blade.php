@@ -4,7 +4,7 @@
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('top') }}">感想一覧</a>
+      <a class="nav-link" href="{{ route('top') }}">感想</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ route('search')}}">アニメ検索</a>
