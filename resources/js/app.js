@@ -4,6 +4,7 @@ import PostLike from './components/PostLike'
 import Search from './components/Search'
 import WorkInformation from './components/WorkInformation'
 import FollowButton from './components/FollowButton'
+import MyAnimeSearch from './components/MyAnimeSearch'
 
 const app = new Vue({
   el:'#app',
@@ -12,6 +13,7 @@ const app = new Vue({
     Search,
     WorkInformation,
     FollowButton,
+    MyAnimeSearch,
   }
 })
 
