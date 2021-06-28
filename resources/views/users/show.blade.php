@@ -38,7 +38,11 @@
             @include('layouts.card_list')
         @endforeach
       </div>
-      <div id="myanime" class="tab-pane active"></div>
+      <div id="myanime" class="tab-pane">
+        <my-anime-search
+        endpoint="{{ route('')}}">
+        </my-anime-search>
+      </div>
     </div>
 
 

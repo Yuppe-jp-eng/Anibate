@@ -1,11 +1,10 @@
 @csrf
-
 <div class="form-group">
   <div class="p-2 form-outline mt-3">
     <div>
       <h4>{{ $title }}<br>{{$season}}</h4>
       <label for="wathed_year" class="form-label">視聴完了時期</label><br>
-      <input type="text"  name="year" id="watched_year" placeholder="例:2015">年
+      <input type="text"  name="year" id="watched_year" placeholder="例:2015" value="{{ old('year') }}">年
       <select name="season" id="season">
         <option value="春">春</option>
         <option value="夏">夏</option>
