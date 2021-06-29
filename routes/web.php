@@ -59,6 +59,7 @@ Route::namespace('User')->prefix('users')->name('users.')->group(function(){
     Route::middleware('auth')->group(function(){
         Route::get('/{name}/edit', 'UserController@edit')->name('edit');
         Route::patch('/{name}', 'UserController@update')->name('update');
+        Route::get('/{name}/searches', 'UserController@search_my_works')->name('searches');
         Route::put('/{name}/follow', 'FollowController@follow')->name('follow');
         Route::delete('/{name}/follow', 'FollowController@unfollow')->name('unfollow');
     });

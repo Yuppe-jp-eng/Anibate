@@ -34,9 +34,9 @@ export default {
     }
   },
   methods: {
-    search() {
+    async search() {
       const queries = {filter_title: this.keyword}
-      axios.get(this.url, {params: queries})
+      await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
       })
@@ -44,10 +44,10 @@ export default {
         console.log(err.statusText)
       });
     },
-    getThisSeasonWorks() {
+     async getThisSeasonWorks() {
       this.works = null
       const queries = {filter_season: "2021-summer", sort_watchers_count: "desc", per_page: 50}
-      axios.get(this.url, {params: queries})
+      await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
       })

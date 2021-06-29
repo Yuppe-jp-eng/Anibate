@@ -27,7 +27,7 @@ class WorkRequest extends FormRequest
             'user_id' => ['integer'],
             'broadcast_season' => ['string', 'size:6'],
             'title' => ['string'],
-            'memo' => ['string', 'max:100'],
+            'memo' => ['max:100'],
             'year' => ['size:4'],
             'season' => ['string', 'size:1'],
         ];

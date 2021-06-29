@@ -4,7 +4,7 @@
     <div>
       <h4>{{ $title }}<br>{{$season}}</h4>
       <label for="wathed_year" class="form-label">視聴完了時期</label><br>
-      <input type="text"  name="year" id="watched_year" placeholder="例:2015" value="{{ old('year') }}">年
+      <input type="text" required name="year" id="watched_year" placeholder="例:2015" value="{{ old('year') }}">年
       <select name="season" id="season">
         <option value="春">春</option>
         <option value="夏">夏</option>
@@ -18,5 +18,5 @@
 
   </div>
   <label></label>
-  <textarea name="memo" required rows="5" placeholder="メモ" class="form-control" >{{ old('memo') ?? ''}}</textarea>
+  <textarea name="memo" rows="5" placeholder="メモ" class="form-control" >{{ old('memo') ?? ''}}</textarea>
 </div>
