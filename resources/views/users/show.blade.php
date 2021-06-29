@@ -40,7 +40,7 @@
       </div>
       <div id="myanime" class="tab-pane">
         <my-anime-search
-        endpoint="{{ route('')}}">
+        endpoint="{{ route('users.searches', ['name' => $user->name] )}}">
         </my-anime-search>
       </div>
     </div>

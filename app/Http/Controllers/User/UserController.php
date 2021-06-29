@@ -5,10 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\User;
+use App\WatchedAnime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
 class UserController extends Controller
 {
     public function show(string $name)
@@ -49,5 +49,14 @@ class UserController extends Controller
         }
         $user->save();
         return redirect()->route('users.show', ['name' => $user->name]);
+    }
+
+    public function search_my_works(Request $request):array
+    {
+        $season = $request->query('year') . '年' . $request->query('season');
+        $works = WatchedAnime::where('season', $season)
+        ->where('user_id', Auth::id())
+        ->get()->toArray();
+        return $works;
     }
 }
