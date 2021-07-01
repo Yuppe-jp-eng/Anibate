@@ -51,9 +51,23 @@ class UserController extends Controller
         return redirect()->route('users.show', ['name' => $user->name]);
     }
 
+    #年代とシーズンから視聴登録済み作品を検索し、作品情報を配列でVue側へ返す
     public function search_my_works(Request $request):array
     {
         $season = $request->query('year') . '年' . $request->query('season');
+        $works = WatchedAnime::where('season', $season)
+        ->where('user_id', Auth::id())
+        ->get()->toArray();
+        return $works;
+    }
+
+    #登録アニメの削除
+    public function delete_anime(int $watched_anime_id):array
+    {
+        $watched_anime = WatchedAnime::find($watched_anime_id);
+        $season = $watched_anime->season;
+        $watched_anime->delete();
+
         $works = WatchedAnime::where('season', $season)
         ->where('user_id', Auth::id())
         ->get()->toArray();

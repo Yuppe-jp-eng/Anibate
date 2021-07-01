@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark ripe-malinka-gradient">
 
-  <a class="navbar-brand" href="/">Anibate</a>
+  <a class="navbar-brand" href="/" style="margin-right: 0"><i class="fas fa-child"></i>Anibate</a>
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">

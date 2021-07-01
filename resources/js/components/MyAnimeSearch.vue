@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-3">
-      <h5>視聴済みアニメ検索</h5>
+    <h5>視聴済みアニメ検索</h5>
     <div>
       <label for="wathed_year" class="form-label">視聴完了時期</label><br>
       <input type="text"  name="year" id="watched_year" 
@@ -11,7 +11,7 @@
         <option value="秋">秋</option>
         <option value="冬">冬</option>
       </select>
-      <button class="btn purple-gradient" v-on:click="search">検索</button>
+      <input type="button" value="検索"  v-on:click="search" class="ml-3">
     </div>
     <table class="table table-striped">
       <thead>
@@ -26,8 +26,19 @@
         <tr>
           <td><p>{{ work.title }}</p></td>
           <td>{{ work.broadcast_season }}</td>
-          <td><a href="">詳細</a></td>
-          <td><a>削除</a></td>
+          <td>
+            <div class="ml-auto card-text">
+              <div class="dropdown">
+                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-align-justify"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <p class="dropdown-item">{{ work.memo }}</p>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td><a><i class="fas fa-trash" v-on:click="delete_anime(work.id)"></i></a></td>
         </tr>
       </tbody>
     </table>
@@ -38,7 +49,7 @@
 <script>
 export default {
   props: {
-    endpoint: {
+    search_endpoint: {
       type: String,
     }
   },
@@ -52,7 +63,7 @@ export default {
   methods: {
     async search() {
       this.works = null
-      await axios.get(this.endpoint, {
+      await axios.get(this.search_endpoint, {
         params: {
           year: this.keyword1,
           season: this.keyword2,
@@ -61,7 +72,18 @@ export default {
       .then(res => {
         this.works = res.data
       })
-    }
+    },
+    async delete_anime(work_id) {
+      if (confirm('本当に削除していいですか？')) {
+        this.works = null
+        await axios.delete('/users/' + work_id)
+        .then(res => {
+          this.works = res.data
+        })
+
+      }
+
+    },
   },
 }
 </script>
