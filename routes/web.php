@@ -51,7 +51,7 @@ Route::namespace('Work')->group(function(){
     Route::get('searches', 'WorkController@search')->name('search');
 });
 
-#ユーザー詳細、フォロー
+#ユーザー詳細、フォロー、登録作品削除
 Route::namespace('User')->prefix('users')->name('users.')->group(function(){
     Route::get('/{name}', 'UserController@show')->name('show');
     Route::get('/{name}/followers', 'FollowController@followers')->name('followers');
@@ -59,6 +59,7 @@ Route::namespace('User')->prefix('users')->name('users.')->group(function(){
     Route::middleware('auth')->group(function(){
         Route::get('/{name}/edit', 'UserController@edit')->name('edit');
         Route::patch('/{name}', 'UserController@update')->name('update');
+        Route::delete('/{work_id}', 'UserController@delete_anime')->name('delete_anime');
         Route::get('/{name}/searches', 'UserController@search_my_works')->name('searches');
         Route::put('/{name}/follow', 'FollowController@follow')->name('follow');
         Route::delete('/{name}/follow', 'FollowController@unfollow')->name('unfollow');
