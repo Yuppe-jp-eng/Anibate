@@ -86,7 +86,7 @@
       </div>
       @if ($post->comments_allowed)
       <div class="ml-auto" style="display:inline-block" >
-        <a href="#">コメント</a>
+        <a href="{{ route('posts.show', ['post' => $post])}}">コメント</a>
       </div>
       @endif
     </div>

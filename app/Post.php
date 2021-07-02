@@ -14,7 +14,7 @@ class Post extends Model
         'episode',
         'comments_allowed'
     ];
-
+    #ユーザー:
     public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');

@@ -32,8 +32,8 @@
                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-align-justify"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <p class="dropdown-item">{{ work.memo }}</p>
+                <div class="dropdown-menu dropdown-menu-right" style="width:100%;word-wrap:break-word">
+                  {{ work.memo }}
                 </div>
               </div>
             </div>

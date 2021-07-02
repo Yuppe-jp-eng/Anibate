@@ -30,10 +30,13 @@ Route::prefix('register')->name('register.')->group(function() {
 #トップ画面
 Route::get('/', 'HomeController@top')->name('top');
 
-#投稿
+#投稿、一覧
 Route::namespace('Post')->group(function(){
     Route::resource('/posts', 'PostController')->except(['index'])->middleware('auth');
     Route::get('/posts/works/{title}', 'PostController@anime_index')->name('title_index');
+    #コメント機能
+    Route::post('/posts/{post}/comment', 'PostCommentController@store')->name('post_comment');
+    Route::delete('/posts/{post}/comment/{post_comment}', 'PostCommentController@destroy')->name('delete_comment');
 });
 
 #いいね
