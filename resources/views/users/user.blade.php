@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="card-body">
-    <p class="ml-3">{{ $user->description }}</p>
+    <p class="ml-3">{!! nl2br(e( $user->description )) !!}</p>
   </div>
   <div class="card-body">
     <div class="card-text" style="display: flex;align-items:center">

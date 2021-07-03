@@ -27,13 +27,13 @@
           <td><p>{{ work.title }}</p></td>
           <td>{{ work.broadcast_season }}</td>
           <td>
-            <div class="ml-auto card-text">
+            <div class="ml-auto card-text" v-if="work.memo !== null">
               <div class="dropdown">
                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-align-justify"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" style="width:100%;word-wrap:break-word">
-                  {{ work.memo }}
+                  <p style="white-space:pre-wrap; word-wrap:break-word;">{{ work.memo }}</p>
                 </div>
               </div>
             </div>
