@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Post;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Http\Controllers\Controller;
+use App\PostComment;
 use Illuminate\Http\Request;
-
 class PostController extends Controller
 {
 
@@ -27,7 +27,10 @@ class PostController extends Controller
     }
     public function show(Post $post)
     {
-        return view('posts.show', ['post' => $post]);
+        $comments = PostComment::where('post_id', $post->id)
+        ->orderByDesc('created_at')
+        ->get();
+        return view('posts.show', ['post' => $post, 'comments' => $comments]);
     }
     public function create(?Request $request)
     {
