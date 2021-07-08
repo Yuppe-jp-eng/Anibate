@@ -96,7 +96,7 @@
       </div>
       <post-comment
       :comments='@json($comments)'
-      :auth_id='@json(Auth::id())'
+      :auth-id='@json(Auth::id())'
       endpoint='{{ route('post_comment', ['post' => $post] )}}'
       >
       </post-comment>

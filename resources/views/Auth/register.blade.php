@@ -14,7 +14,7 @@
               <i class="fab fa-google mr-1"></i>Googleで登録
             </a>
             <div class="card-text">
-              {{-- フォーム部分--}}
+
               <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="md-form">

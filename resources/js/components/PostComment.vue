@@ -16,7 +16,22 @@
       </div>
     </div>
     <div v-for="comment in current_comments" v-bind:key="comment.id">
-      <p>{{ comment.body }}</p>
+      <div class="card mt-3">
+        <div class="card-body d-flex flew-row">
+          <a class="text-dark" style="display: inline">
+            <img v-bind:src="comment.user.profile_image " alt="画像" width="30px" height="30px" style="border-radius: 50%">
+            <p>{{ comment.user.name }}</p>
+          </a>
+          <div class="d-flex ml-3" style="align-items:center">
+            <p style="white-space:pre-wrap; word-wrap:break-word;">{{ comment.body }}</p>
+          </div>
+          <div style="text-align:right;margin-left:auto" v-if="user_check(comment.user_id)">
+            <a v-on:click="delete_comment(comment.id)"><i class="fas fa-trash"></i></a>
+          </div>
+
+        </div>
+      </div>
+
     </div>
 </div>
 
@@ -31,7 +46,7 @@ export default {
     endpoint: {
       type: String
     },
-    auth_id: {
+    authId: {
       type: Number
     }
   },
@@ -40,6 +55,7 @@ export default {
       current_comments: this.comments,
       post_url: this.endpoint,
       comment:'',
+      auth_id: String(this.authId)
     }
   },
   methods: {
@@ -54,7 +70,23 @@ export default {
       .catch(err => {
         console.log(err.statusText)
       })
+    },
+    async delete_comment(comment_id) {
+      if (confirm('本当に削除していいですか？')) {
+        await axios.delete(this.endpoint + '/' + comment_id)
+        .then(res => {
+          this.current_comments = res.data
+        })
     }
+
   },
+  user_check(user_id) {
+    if (this.auth_id == user_id) {
+      return true
+    }
+    else
+    return false
+  },
+},
 }
 </script>

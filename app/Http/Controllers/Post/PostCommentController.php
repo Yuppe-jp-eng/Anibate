@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Post;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\PostComment;
+use CreatePostCommentsTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,14 +19,24 @@ class PostCommentController extends Controller
         $comment->user_id = Auth::id();
         $comment->save();
 
-        $comments = PostComment::where('post_id', $post->id)
-        ->orderByDesc('created_at')
-        ->get();
+        // $comments = PostComment::with('user')
+        // ->where('post_id', $post->id)
+        // ->orderByDesc('created_at')
+        // ->get();
+        $comments = $comment->post->get_comments_with_user($post->id);
         return $comments;
     }
 
-    public function destroy()
+    public function destroy(int $post_id, int $comment_id)
     {
-
+        $comment = PostComment::where('id', $comment_id)->first();
+        $comment->delete();
+        // $comments = PostComment::with('user')
+        // ->where('post_id', $post->id)
+        // ->orderByDesc('created_at')
+        // ->get();
+        $comments = $comment->post->get_comments_with_user($post_id);
+        
+        return $comments;
     }
 }

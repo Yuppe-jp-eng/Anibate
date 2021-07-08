@@ -6,6 +6,8 @@ use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Http\Controllers\Controller;
 use App\PostComment;
+use App\User;
+use ArrayObject;
 use Illuminate\Http\Request;
 class PostController extends Controller
 {
@@ -27,10 +29,16 @@ class PostController extends Controller
     }
     public function show(Post $post)
     {
-        $comments = PostComment::where('post_id', $post->id)
-        ->orderByDesc('created_at')
-        ->get();
-        return view('posts.show', ['post' => $post, 'comments' => $comments]);
+        // $comments = PostComment::with('user')
+        // ->where('post_id', $post->id)
+        // ->orderByDesc('created_at')
+        // ->get();
+        $comments = $post->get_comments_with_user($post->id);
+        
+        return view('posts.show', [
+            'post' => $post,
+            'comments' => $comments,
+        ]);
     }
     public function create(?Request $request)
     {
