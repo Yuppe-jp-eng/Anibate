@@ -45,6 +45,17 @@ class Post extends Model
     {
         return $this->hasMany('App\PostComment');
     }
+    
+    #投稿に結びついたコメントとコメントに結びついたUserを配列で取得
+    public function get_comments_with_user(int $post_id):Object
+    {
+        $comments = PostComment::with('user')
+        ->where('post_id', $post_id)
+        ->orderByDesc('created_at')
+        ->get();
+
+        return $comments;
+    }
 }
 
 

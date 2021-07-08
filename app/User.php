@@ -76,6 +76,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
+    #Userとの関係
+    public function comments():HasMany
+    {
+        return $this->hasMany('App\PostComment');
+    }
     #Likeとの関係
     public function likes():BelongsToMany
     {
