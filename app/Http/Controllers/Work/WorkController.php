@@ -19,10 +19,7 @@ class WorkController extends Controller
     {
         $token = config('services.annict_token');
         $work_id = $request->query('id');
-        return view('works.show', [
-            'work_id' => $work_id,
-            'token' => $token,
-        ]);
+        return view('works.show', compact('work_id', 'token'));
     }
 
     public function create(Request $request)
@@ -30,10 +27,7 @@ class WorkController extends Controller
         $title = $request->query('title');
         $season = $request->query('season');
 
-        return view('works.create',[
-            'title' => $title,
-            'season' => $season,
-        ]);
+        return view('works.create', compact('title', 'season'));
     }
 
     public function store(WorkRequest $request, WatchedAnime $anime)

@@ -18,7 +18,7 @@
     <div v-for="comment in current_comments" v-bind:key="comment.id">
       <div class="card mt-3">
         <div class="card-body d-flex flew-row">
-          <a class="text-dark" style="display: inline">
+          <a  v-bind:href="'/users/' + comment.user.name" class="text-dark" style="display: inline">
             <img v-bind:src="comment.user.profile_image " alt="画像" width="30px" height="30px" style="border-radius: 50%">
             <p>{{ comment.user.name }}</p>
           </a>

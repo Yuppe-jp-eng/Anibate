@@ -16,11 +16,7 @@ class UserController extends Controller
         $user = User::where('name', $name)->first();
         $all_posts = $user->posts->sortByDesc('created_at');
         $favorite_posts = $user->likes->sortByDesc('created_at');
-        return view('users.show', [
-            'user' => $user,
-            'all_posts' => $all_posts,
-            'favorite_posts' => $favorite_posts,
-        ]);
+        return view('users.show', compact('user', 'all_posts', 'favorite_posts'));
     }
 
     public function edit(string $name)
@@ -57,7 +53,9 @@ class UserController extends Controller
         $season = $request->query('year') . '年' . $request->query('season');
         $works = WatchedAnime::where('season', $season)
         ->where('user_id', Auth::id())
-        ->get()->toArray();
+        ->orderByDesc('created_at')
+        ->get()
+        ->toArray();
         return $works;
     }
 

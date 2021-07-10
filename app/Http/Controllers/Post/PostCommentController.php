@@ -18,11 +18,6 @@ class PostCommentController extends Controller
         $comment->post_id = $post->id;
         $comment->user_id = Auth::id();
         $comment->save();
-
-        // $comments = PostComment::with('user')
-        // ->where('post_id', $post->id)
-        // ->orderByDesc('created_at')
-        // ->get();
         $comments = $comment->post->get_comments_with_user($post->id);
         return $comments;
     }
@@ -31,10 +26,6 @@ class PostCommentController extends Controller
     {
         $comment = PostComment::where('id', $comment_id)->first();
         $comment->delete();
-        // $comments = PostComment::with('user')
-        // ->where('post_id', $post->id)
-        // ->orderByDesc('created_at')
-        // ->get();
         $comments = $comment->post->get_comments_with_user($post_id);
         
         return $comments;

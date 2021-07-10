@@ -7,7 +7,7 @@
 
 <div class="container mt-3">
 
-  <h3>{{ $title }}の感想一覧</h3>
+  <h5>{{ $title }}の感想一覧</h5>
 @foreach ($posts as $post)
   @include('layouts.card_list')
 @endforeach
