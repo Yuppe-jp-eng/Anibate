@@ -75,7 +75,6 @@ export default {
     },
     async delete_anime(work_id) {
       if (confirm('本当に削除していいですか？')) {
-        this.works = null
         await axios.delete('/users/' + work_id)
         .then(res => {
           this.works = res.data

@@ -10,11 +10,11 @@
     <div style="text-align:right">
       <button class="btn ripe-malinka-gradient" v-on:click="getThisSeasonWorks" style="color:white">今期アニメ</button>
     </div>
-    <div class="row">
-    <div v-for="work in works" v-bind:key="work.id" style="display:inline-block; text-align:center" class="col-md-4 col-xs-12">
+    <div class="row mt-4">
+    <div v-for="work in works" v-bind:key="work.id" style="display:inline-block; text-align:center" class="col-md-4 col-sm-5 offset-sm-1 mb-3">
       <img v-bind:src="work.images.recommended_url" width="200px" height="auto" style="display:inline-block">
       <br/>
-      <a v-bind:href="'/works/' + work.title + '/?id=' + work.id" style="display:inline-block; width:100%" >{{ work.title }}</a>
+      <a v-bind:href="'/works/' + work.title + '/?id=' + work.id" style="white-space:pre-wrap;word-wrap:break-word;display:inline-block; width:100%" >{{ work.title }}</a>
     </div>
     </div>
   </div>

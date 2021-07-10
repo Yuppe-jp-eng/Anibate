@@ -4,7 +4,7 @@
       <img src="{{ $post->user->profile_image }}" alt="画像" width="60px" height="60px" style="border-radius: 50%">
     </a>
     
-    <div>
+    <div class="ml-3">
       <div class="font-weight-bold">
         <a href="{{ route('users.show', ['name' => $post->user->name])}}" class="text-dark">
         {{ $post->user->name }}
@@ -85,7 +85,7 @@
         </post-like>
       </div>
       @if ($post->comments_allowed)
-      <div class="ml-auto" style="display:inline-block" >
+      <div class="ml-auto comment_link" style="display:inline-block" >
         <a href="{{ route('posts.show', ['post' => $post])}}">コメント</a>
       </div>
       @endif

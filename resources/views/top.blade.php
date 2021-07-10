@@ -20,6 +20,9 @@
       @foreach ($posts as $post)
         @include('layouts.card_list')
       @endforeach
+      <div class="pagination">
+        {{ $posts->links()}}
+      </div>
     </div>
 
 @endsection

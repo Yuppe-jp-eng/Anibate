@@ -21,34 +21,21 @@ class PostController extends Controller
     {
         $posts = Post::where('title', $title)->get()->sortByDesc('created_at');
 
-        return view('posts.anime_index',[
-            'posts' => $posts,
-            'title' => $title,
-        ]);
+        return view('posts.anime_index', compact('title', 'posts'));
 
     }
     public function show(Post $post)
     {
-        // $comments = PostComment::with('user')
-        // ->where('post_id', $post->id)
-        // ->orderByDesc('created_at')
-        // ->get();
         $comments = $post->get_comments_with_user($post->id);
-        
-        return view('posts.show', [
-            'post' => $post,
-            'comments' => $comments,
-        ]);
+
+        return view('posts.show',compact('post', 'comments'));
     }
     public function create(?Request $request)
     {
         $title = $request->query('title');
         $episode = $request->query('episode');
 
-        return view('posts.create', [
-            'title' => $title,
-            'episode' => $episode
-            ]);
+        return view('posts.create', compact('title', 'episode'));
     }
 
     public function store(PostRequest $request, Post $post)

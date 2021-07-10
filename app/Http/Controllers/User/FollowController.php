@@ -42,10 +42,7 @@ class FollowController extends Controller
         $user = User::where('name', $name)->first();
         $followers = $user->followers->sortByDesc('created_at');
         
-        return view('users.followers',[
-            'user' => $user,
-            'followers' => $followers,
-        ]);
+        return view('users.followers', compact('user', 'followers'));
     }
 
     public function followings(string $name)
@@ -53,9 +50,6 @@ class FollowController extends Controller
         $user = User::where('name', $name)->first();
         $followings = $user->followings->sortByDesc('created_at');
         
-        return view('users.followings',[
-            'user' => $user,
-            'followings' => $followings,
-        ]);
+        return view('users.followings', compact('user', 'followings'));
     }
 }
