@@ -20,8 +20,8 @@
       @foreach ($posts as $post)
         @include('layouts.card_list')
       @endforeach
-      <div class="pagination">
-        {{ $posts->links()}}
+      <div class="pagination mt-4">
+        {{ $posts->links('vendor.pagination.simple-bootstrap-4')}}
       </div>
     </div>
 

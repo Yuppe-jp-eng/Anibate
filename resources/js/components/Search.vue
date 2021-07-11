@@ -30,18 +30,20 @@ export default {
     return {
       works: null,
       keyword: '',
+      noworks:false,
       url: 'https://api.annict.com/v1/works?access_token=' + this.token,
     }
   },
   methods: {
     async search() {
+      this.noworks = false
       const queries = {filter_title: this.keyword}
       await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
       })
       .catch(err => {
-        console.log(err.statusText)
+        console.log(err.message)
       });
     },
      async getThisSeasonWorks() {
@@ -52,7 +54,7 @@ export default {
         this.works = res.data.works
       })
       .catch(err => {
-        console.log(err.statusText)
+        console.log(err.message)
       });
     }
   },
