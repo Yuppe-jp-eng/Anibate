@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function top()
     {
-        $posts = Post::all()->sortByDesc('created_at');
-        return view('top', ['posts' => $posts]);
+        $posts = Post::all()->sortByDesc('created_at')->paginate(5);
+
+        return view('top', compact('posts'));
     }
 }

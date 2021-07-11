@@ -1,21 +1,25 @@
 <nav class="navbar navbar-expand navbar-dark ripe-malinka-gradient">
 
-  <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>Anibate</a>
+  <a class="navbar-brand" href="/" style="margin-right: 0"><i class="fas fa-child"></i>Anibate</a>
 
   <ul class="navbar-nav ml-auto">
-
     <li class="nav-item">
-      <a class="nav-link" href="">アニメ検索</a>
+      <a class="nav-link" href="{{ route('top') }}">感想</a>
     </li>
-
     <li class="nav-item">
-      <a class="nav-link" href="">ログイン</a>
+      <a class="nav-link" href="{{ route('search')}}">アニメ検索</a>
     </li>
-
+    @guest
     <li class="nav-item">
-      <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>語る</a>
+      <a class="nav-link" href="{{ route('login')}}">ログイン</a>
     </li>
-
+    @endguest
+    @auth
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('posts.create') }}"><i class="fas fa-pen mr-1"></i>語る</a>
+    </li>
+    @endauth
+    @auth
     <!-- Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -24,7 +28,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
         <button class="dropdown-item" type="button"
-                onclick="location.href=''">
+                onclick="location.href='{{ route('users.show', ['name' => Auth::user()->name]) }}'">
           マイページ
         </button>
         <div class="dropdown-divider"></div>
@@ -33,10 +37,11 @@
         </button>
       </div>
     </li>
-    <form id="logout-button" method="POST" action="">
+    <form id="logout-button" method="POST" action="{{ route('logout')}}">
+      @csrf
     </form>
     <!-- Dropdown -->
-
+    @endauth
   </ul>
 
 </nav>
