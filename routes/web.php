@@ -49,7 +49,8 @@ Route::namespace('Favorite')->group(function(){
 
 #検索機能
 Route::namespace('Work')->group(function(){
-    Route::resource('works', 'WorkController', ['only' => ['create', 'store', 'show']]);
+    Route::resource('works', 'WorkController', ['only' => ['create', 'store',]])->middleware('auth');
+    Route::get('works/{work}', 'WorkController@show')->name('work.show');
     Route::get('searches', 'WorkController@search')->name('search');
 });
 

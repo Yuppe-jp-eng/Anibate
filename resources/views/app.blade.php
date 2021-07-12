@@ -24,7 +24,6 @@
   <div id="app">
     @yield('content')
   </div>
-
   <script src="{{ mix('js/app.js')}}"></script>
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -34,6 +33,28 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
+  <footer class="ripe-malinka-gradient">
+    <div style="text-align: center">
+      <p style="margin-bottom: 0;color:white">© yuppe.2021</p>
+    </div>
+  </footer>
+  <style>
+    body{
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 40px;
+      box-sizing: border-box;
+    }
+
+    footer{
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      padding: 5px 0;
+    }
+
+
+  </style>
 </body>
 
 </html>
