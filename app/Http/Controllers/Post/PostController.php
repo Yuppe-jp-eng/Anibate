@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\PostComment;
 use App\User;
 use ArrayObject;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 class PostController extends Controller
 {
@@ -19,7 +20,8 @@ class PostController extends Controller
 
     public function anime_index(string $title)
     {
-        $posts = Post::where('title', $title)->get()->sortByDesc('created_at');
+        $posts = Post::where('title', $title)->get()
+        ->sortByDesc('created_at')->paginate(3);
 
         return view('posts.anime_index', compact('title', 'posts'));
 
