@@ -21,7 +21,7 @@ class PostController extends Controller
     public function anime_index(string $title)
     {
         $posts = Post::where('title', $title)->get()
-        ->sortByDesc('created_at')->paginate(3);
+        ->sortByDesc('created_at')->paginate(8);
 
         return view('posts.anime_index', compact('title', 'posts'));
 
