@@ -15,7 +15,10 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
         $all_posts = $user->posts->sortByDesc('created_at');
-        $favorite_posts = $user->likes->sortByDesc('created_at');
+        $favorite_posts = $user->likes()
+        ->withPivot('created_at AS favorited_at')
+        ->orderBy('favorited_at', 'desc')->get();
+
         return view('users.show', compact('user', 'all_posts', 'favorite_posts'));
     }
 
