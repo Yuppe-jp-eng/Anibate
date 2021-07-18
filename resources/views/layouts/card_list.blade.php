@@ -85,8 +85,13 @@
         </post-like>
       </div>
       @if ($post->comments_allowed)
-      <div class="ml-auto comment_link" style="display:inline-block" >
-        <a href="{{ route('posts.show', ['post' => $post])}}">コメント</a>
+      <div class="ml-2 card-text comment_link" style="display:inline-block;" >
+        <div>
+          <button type="button" class="btn shadow-none m-0 p-1" style="padding: 0">
+            <a href="{{ route('posts.show', ['post' => $post])}}"><i class="fas fa-comment"></i></a>
+          </button>
+              {{ $post->post_comments->count() }}
+        </div>
       </div>
       @endif
     </div>
