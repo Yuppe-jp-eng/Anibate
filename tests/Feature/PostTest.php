@@ -11,11 +11,20 @@ use Tests\TestCase;
 class PostTest extends TestCase
 {
     use RefreshDatabase;
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+        $this->another_user = factory(User::class)->create();
+        $this->post = factory(Post::class)
+        ->create(['user_id' => $this->user->id]);
+    }
 
     #null値を取った時にfalseを返す
     public function testIsLikedByNull()
     {
-        $post = factory(Post::class)->create();
+        $post = $this->post;
 
         $result = $post->isLikedBy(null);
 
@@ -25,8 +34,8 @@ class PostTest extends TestCase
     #いいねしているユーザーを引数に取った時にtrueを返すか
     public function testIsLikedByTheUser()
     {
-        $post = factory(Post::class)->create();
-        $user = factory(User::class)->create();
+        $post = $this->post;
+        $user = $this->user;
         $post->likes()->attach($user);
 
         $result = $post->isLikedBy($user);
@@ -37,9 +46,9 @@ class PostTest extends TestCase
     #いいねしていないユーザーを引数に取った時にfalseを返すか
     public function testIsLikedByAnother()
     {
-        $user = factory(User::class)->create();
-        $another = factory(User::class)->create();
-        $post = factory(Post::class)->create();
+        $user = $this->user;
+        $another = $this->another_user;
+        $post = $this->post;
         $post->likes()->attach($another);
 
         $result = $post->isLikedBy($user);
