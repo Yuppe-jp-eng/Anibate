@@ -11,6 +11,16 @@ class PostControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+        $this->another_user = factory(User::class)->create();
+        $this->post = factory(Post::class)
+        ->create(['user_id' => $this->user->id]);
+    }
+
     public function testAnimeIndex()
     {
         $title = "ナルト";
@@ -30,14 +40,21 @@ class PostControllerTest extends TestCase
 
     public function testGuestShow()
     {
-        $post = factory(Post::class)->create();
+        $post = $this->post;
         $response = $this->get(route('posts.show', compact('post')));
+        $response->assertRedirect(route('login'));
+    }
+
+    public function testGuestEdit()
+    {
+        $post = $this->post;
+        $response = $this->get(route('posts.edit', compact('post')));
         $response->assertRedirect(route('login'));
     }
     #ログイン状態のテスト
     public function testAuthCreate()
     {
-        $user = factory(User::class)->create();
+        $user = $this->user;
 
         $response = $this->actingAs($user)
         ->get(route('posts.create'));
@@ -48,16 +65,29 @@ class PostControllerTest extends TestCase
 
     public function testAuthShow()
     {
-        $user = factory(User::class)->create();
-        $post = factory(Post::class)->create();
+        $user = $this->user;
+        $post = $this->post;
 
         $response = $this->actingAs($user)
         ->get(route('posts.show', compact('post')));
 
         $response->assertStatus(200)
         ->assertViewIs('posts.show');
-
-        
     }
+
+    public function testAuthEdit()
+    {
+        $this->withoutExceptionHandling();
+        $user = $this->user;
+
+        $post = $this->post;
+
+        $response = $this->actingAs($user)
+        ->get(route('posts.edit', ['post' => $this->post->id]));
+
+        $response->assertStatus(200)
+        ->assertViewIs('posts.edit');
+    }
+
 
 }
