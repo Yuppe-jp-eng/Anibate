@@ -16,7 +16,6 @@ class PostControllerTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
-        $this->another_user = factory(User::class)->create();
         $this->post = factory(Post::class)
         ->create(['user_id' => $this->user->id]);
     }
@@ -134,6 +133,23 @@ class PostControllerTest extends TestCase
         $response -> assertRedirect('/');
 
         $this->assertDatabaseHas('posts', ['body' => $post_data['body']]);
+    }
+
+    public function testAuthDelete()
+    {
+        $this->assertDatabaseHas('posts', ['id' => $this->post->id]);
+
+        $url = route('posts.destroy', ['post' => $this->post]);
+
+        $response = $this->actingAs($this->user)->delete($url);
+
+        $response->assertSessionHasNoErrors();
+
+        $response = $this->get('/');
+        $response->assertStatus(200);
+
+        $this->assertDeleted($this->post);
+        $this->assertDatabaseMissing('posts', ['id' => $this->post->id]);
     }
 
 }
