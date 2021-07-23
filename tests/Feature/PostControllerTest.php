@@ -54,21 +54,52 @@ class PostControllerTest extends TestCase
     #ログイン状態のテスト
     public function testAuthCreate()
     {
-        $user = $this->user;
-
-        $response = $this->actingAs($user)
+        $response = $this->actingAs($this->user)
         ->get(route('posts.create'));
 
         $response->assertStatus(200)
         ->assertViewIs('posts.create');
     }
 
+    public function testStore()
+    {
+        $post_data = [
+            'title' => '涼宮ハルヒの憂鬱',
+            'episode' => '3話',
+            'body' => 'とっても面白かったですね',
+            'comments_allowed' => true,
+            'user_id' => $this->user->id
+        ];
+
+        $url = route('posts.store');
+
+        $response = $this->actingAs($this->user)
+        ->post($url, $post_data);
+
+        $response->assertSessionHasNoErrors();
+
+        $response->assertStatus(302); #リダイレクト確認
+
+        $response->assertRedirect('/');
+
+        $this->assertDatabaseHas('posts', [
+            'title' => '涼宮ハルヒの憂鬱'
+        ]);
+
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+
+        $response->assertViewIs('top');
+
+        $response->assertSeeText($post_data['title']);
+    }
+
     public function testAuthShow()
     {
-        $user = $this->user;
         $post = $this->post;
 
-        $response = $this->actingAs($user)
+        $response = $this->actingAs($this->user)
         ->get(route('posts.show', compact('post')));
 
         $response->assertStatus(200)
@@ -77,17 +108,32 @@ class PostControllerTest extends TestCase
 
     public function testAuthEdit()
     {
-        $this->withoutExceptionHandling();
-        $user = $this->user;
-
-        $post = $this->post;
-
-        $response = $this->actingAs($user)
-        ->get(route('posts.edit', ['post' => $this->post->id]));
+        $response = $this->actingAs($this->user)
+        ->get(route('posts.edit', ['post' => $this->post]));
 
         $response->assertStatus(200)
         ->assertViewIs('posts.edit');
     }
 
+    public function testAuthUpdata()
+    {
+        $post_data = [
+            'title' => '涼宮ハルヒの憂鬱',
+            'body' => 'とっても面白かったですね。特にあのシーンは感動しました。',
+        ];
+
+        $url = route('posts.update', ['post' => $this->post]);
+
+        $response = $this->actingAs($this->user)
+        ->put($url, $post_data);
+
+        $response->assertSessionHasNoErrors();
+
+        $response->assertStatus(302);
+
+        $response -> assertRedirect('/');
+
+        $this->assertDatabaseHas('posts', ['body' => $post_data['body']]);
+    }
 
 }

@@ -10,6 +10,7 @@ use App\User;
 use ArrayObject;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
+
 class PostController extends Controller
 {
 
