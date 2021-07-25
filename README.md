@@ -31,4 +31,15 @@ Anibateはアニメ好きな人が自分の感想を語り合ったり、視聴�
     
 ### インフラ
  - CircleCI
- - 
+ - Nginx 1.12.2
+ - AWS
+    - VPC
+    - EC2
+      - Amazon Linux2(t2.micro)
+    - RDS 
+      - PostgreSQL 9.2.24
+    - S3(ユーザー画像保存)
+    - Route53
+ 
+### 開発環境
+- Laradock
