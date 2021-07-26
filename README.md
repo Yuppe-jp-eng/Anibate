@@ -1,5 +1,6 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
+
 <p align="center">
 <a href="https://icons8.com/icon/20909/html-5"><img src="https://img.icons8.com/color/96/000000/html-5--v1.png" width="60" height="60"/></a>
 <a href="https://icons8.com/icon/21278/css3"><img src="https://img.icons8.com/color/96/000000/css3.png" width="60" height="60"/></a>
@@ -16,7 +17,12 @@
 Anibateはアニメ好きな人が自分の感想を語り合ったり、視聴作品を記録できたりするプラットフォームです。
 豊富なアニメ作品に基づいた感想投稿、簡単な視聴記録をすることができます。
 
+## 使用デモ
+![感想投稿](https://user-images.githubusercontent.com/63234480/126925998-5cb4c94d-93db-47a4-acd6-8d8f63088783.gif)
+![視聴記録](https://user-images.githubusercontent.com/63234480/126926796-1b3bf5e0-a9c5-4196-b127-2de9c143d6b7.gif)
 
+
+    
 ## 使用技術
 ### バックエンド
 - PHP 7.3.28
