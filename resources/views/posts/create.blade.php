@@ -3,7 +3,7 @@
 @section('title', '感想投稿')
 
 @section('content')
-
+@include('layouts.nav')
 <div class="container">
   <div class="row">
     <div class="col-12">

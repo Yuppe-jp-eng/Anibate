@@ -6,7 +6,8 @@
 @include('layouts.nav')
 <div class="container mt-4">
   <search
-  token={{ $token }}>
+  token={{ $token }}
+  >
   </search>
 </div>
 </div>
