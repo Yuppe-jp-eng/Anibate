@@ -9,9 +9,9 @@
     </div>
     <div>
       <button type="button" class="btn btn-sm" style="margin:0"
-      :class="{'ripe-malinka-gradient': this.option1, 'text-white': this.option1}" v-on:click="getLastSeasonWorks">2021春</button>
+      :class="{'ripe-malinka-gradient': this.option1, 'text-white': this.option1}" v-on:click="getLastSeasonWorks">2021夏</button>
       <button type="button" class="btn btn-sm" style="margin:0"
-      :class="{'ripe-malinka-gradient': this.option2, 'text-white': this.option2}" v-on:click="getThisSeasonWorks">2021夏</button>
+      :class="{'ripe-malinka-gradient': this.option2, 'text-white': this.option2}" v-on:click="getThisSeasonWorks">2021秋</button>
     </div>
     <div class="row mt-4">
     <div v-for="work in works" v-bind:key="work.id" style="display:inline-block; text-align:center" class="col-md-4 col-sm-5 offset-sm-1 mb-3">
@@ -58,7 +58,7 @@ export default {
       this.option1 = this.option2 = this.option3 = false
     },
     async getLastSeasonWorks() {
-      const queries = {filter_season: "2021-spring", sort_watchers_count: "desc", per_page: 50}
+      const queries = {filter_season: "2021-summer", sort_watchers_count: "desc", per_page: 50}
       await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
@@ -71,7 +71,7 @@ export default {
     },
     async getThisSeasonWorks() {
       this.works = null
-      const queries = {filter_season: "2021-summer", sort_watchers_count: "desc", per_page: 50}
+      const queries = {filter_season: "2021-autumn", sort_watchers_count: "desc", per_page: 50}
       await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
