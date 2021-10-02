@@ -76,10 +76,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
-    #Userとの関係
+    #PostCommentとの関係
     public function comments():HasMany
     {
         return $this->hasMany('App\PostComment');
+    }
+    #WatchedAnimeとの関係
+    public function watched_animes():HasMany
+    {
+        return $this->hasMany('App\WatchedAnime');
     }
     #Likeとの関係
     public function likes():BelongsToMany
