@@ -13,7 +13,9 @@ class UserController extends Controller
 {
     public function show(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $user = User::where('name', $name)->first()
+        ->load('posts.user', 'posts.post_comments');
+
         $all_posts = $user->posts->sortByDesc('created_at');
         $favorite_posts = $user->likes()
         ->withPivot('created_at AS favorited_at')
