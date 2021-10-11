@@ -94,6 +94,17 @@
         </div>
       </div>
       @endif
+      <div style="margin-left: auto">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+        class= "twitter-share-button"
+        data-show-count="false"
+        data-text="{{ $post->user->name }}さんが「{{ $post->title }}」~{{$post->episode}}~の感想を投稿しました。" 
+        data-url="http://anibate.com"
+        data-hashtags="{{ $post->title }},anime"
+        target="_blank">
+      </a>
+      </div>
+
     </div>
   </div>
 </div>
