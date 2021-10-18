@@ -16,31 +16,39 @@ class Post extends Model
         'episode',
         'comments_allowed'
     ];
-    #ユーザー:
+    /**
+     * 投稿userを取得
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');
     }
-    
+    /**
+     * 投稿をいいねしたuserを取得
+     */
     public function likes(): BelongsToMany
     {
         return $this->belongsToMany('App\User', 'likes')->withTimestamps();
     }
 
-    #ユーザーがいいねしているかの確認
+    #userがいいねしているかの確認
     public function isLikedBy(?User $user):bool
     {
         return $user
         ?(bool)$this->likes->where('id', $user->id)->count()
         :false;
     }
-
+    /**
+     * 投稿のいいね数を取得
+     */
     public function getCountLikesAttribute(): int
     {
         return $this->likes->count();
     }
 
-    #PostCommentとの関係
+    /**
+     * 投稿に対するコメントの取得
+     */
     public function post_comments():HasMany
     {
         return $this->hasMany('App\PostComment');
