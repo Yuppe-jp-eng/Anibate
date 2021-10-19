@@ -16,7 +16,7 @@
       @endguest
       @auth
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('posts.create') }}">語る</a>
+        <a class="nav-link" href="#">ルーム</a>
       </li>
       @endauth
       @auth
