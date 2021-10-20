@@ -16,7 +16,7 @@
       @endguest
       @auth
       <li class="nav-item">
-        <a class="nav-link" href="#">ルーム</a>
+        <a class="nav-link" href="{{ route('rooms.index')}}">ルーム</a>
       </li>
       @endauth
       @auth
