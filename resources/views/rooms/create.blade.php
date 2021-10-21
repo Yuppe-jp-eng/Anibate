@@ -12,10 +12,12 @@
           <div class="form-group mt-3">
             <label class="form-label" for="form1">ルーム名</label>
             <input type="text" id="form1" class="form-control" name= "name" placeholder="ルーム名">
-            
+            <add-member
+             :user-list='@json($followings)'>
+            </add-member>
           </div>
           <div class="mt-1 d-flex justify-content-between">
-            <div><button type="submit" class="btn btn-sm ripe-malinka-gradient ml-auto" style="color: aliceblue">更新する</button></div>
+            <div><button type="submit" class="btn btn-sm ripe-malinka-gradient ml-auto" style="color: aliceblue">作成する</button></div>
           </div>
   
         </form>

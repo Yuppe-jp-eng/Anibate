@@ -8,5 +8,6 @@
         <a href="{{ route('rooms.create')}}">ルーム作成</a>
       </div>
       {{-- ルーム一覧コンポーネント化したい --}}
+      
     </div>
 @endsection
