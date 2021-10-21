@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Room;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class RoomController extends Controller
 {
     /**
@@ -24,7 +25,9 @@ class RoomController extends Controller
      */
     public function create()
     {
-        return view('rooms.create');
+        $user = User::find(Auth::id());
+        $followings = $user->followings;
+        return view('rooms.create', compact('followings'));
     }
 
     /**
