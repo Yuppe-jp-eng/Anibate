@@ -16,7 +16,7 @@
         <p>{{ user.name }}</p>
         <div class="ml-auto">
           <input type="checkbox" :id="user.name" style="display:inline-block;"
-          name="'user_id[]'" :value="user.id" v-model="checkedUserIds"
+          name="user_ids[]" :value="user.id" v-model="checkedUserIds"
           @click="clickMember(user)"
           >
         </div>
