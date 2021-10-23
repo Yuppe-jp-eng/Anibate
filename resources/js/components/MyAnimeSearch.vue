@@ -5,13 +5,13 @@
       <label for="wathed_year" class="form-label">視聴完了時期</label><br>
       <input type="text"  name="year" id="watched_year" 
       placeholder="例:2015" v-model="keyword1">年
-      <select name="season" id="season" v-model="keyword2" v-on:keyup.enter="search">
+      <select name="season" id="season" v-model="keyword2" @keyup.enter="search">
         <option value="春">春</option>
         <option value="夏">夏</option>
         <option value="秋">秋</option>
         <option value="冬">冬</option>
       </select>
-      <input type="button" value="検索"  v-on:click="search" class="ml-3">
+      <input type="button" value="検索"  @click="search" class="ml-3">
     </div>
     <table class="table table-striped">
       <thead>
@@ -22,7 +22,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody v-for="work in works" v-bind:key="work.id">
+      <tbody v-for="work in works" :key="work.id">
         <tr>
           <td><p>{{ work.title }}</p></td>
           <td>{{ work.broadcast_season }}</td>
@@ -38,7 +38,7 @@
               </div>
             </div>
           </td>
-          <td><a><i class="fas fa-trash" v-on:click="delete_anime(work.id)"></i></a></td>
+          <td><a><i class="fas fa-trash" @click="delete_anime(work.id)"></i></a></td>
         </tr>
       </tbody>
     </table>
