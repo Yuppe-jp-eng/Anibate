@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Room;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoomRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,9 +37,9 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoomRequest $request)
     {
-        //
+        return var_dump($request->all());
     }
 
     /**
