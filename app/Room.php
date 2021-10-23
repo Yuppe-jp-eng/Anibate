@@ -14,7 +14,7 @@ class Room extends Model
      */
     public function users():BelongsToMany
     {
-        return $this->belongsToMany('App\User', 'user_rooms');
+        return $this->belongsToMany('App\User', 'user_rooms')->withTimestamps();
     }
 
     /**
@@ -23,5 +23,13 @@ class Room extends Model
     public function chats(): HasMany
     {
         return $this->hasMany('App\Chat');
+    }
+
+    /**
+     * ルームに参加ユーザーを割り当て
+     */
+    public function addUserToRoom(array $user_ids)
+    {
+        $this->users()->attach($user_ids);
     }
 }

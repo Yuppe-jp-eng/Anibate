@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Room;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoomRequest;
+use App\Room;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class RoomController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View
      */
     public function index()
     {
@@ -22,7 +23,7 @@ class RoomController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View
      */
     public function create()
     {
@@ -35,11 +36,19 @@ class RoomController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(RoomRequest $request)
+    public function store(RoomRequest $request, Room $room)
     {
-        return var_dump($request->all());
+        $member = $request->user_ids;
+        $room->name = $request->room_name;
+
+        $room->save();
+        array_push($member, Auth::id());
+        $room->users()->attach($member);
+        
+        return var_dump($room->users);
+
     }
 
     /**
