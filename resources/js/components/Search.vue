@@ -5,19 +5,19 @@
         <span class="input-group-text pink lighten-3" id="basix-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
       </div>
       <input type="text" class="form-control my-0 py-1" placeholder="アニメ検索" aria-label="アニメ検索"
-      v-model="keyword" v-on:keyup.enter="search">
+      v-model="keyword" @keyup.enter="search">
     </div>
     <div>
       <button type="button" class="btn btn-sm" style="margin:0"
-      :class="{'ripe-malinka-gradient': this.option1, 'text-white': this.option1}" v-on:click="getLastSeasonWorks">2021夏</button>
+      :class="{'ripe-malinka-gradient': this.option1, 'text-white': this.option1}" @click="getLastSeasonWorks">2021夏</button>
       <button type="button" class="btn btn-sm" style="margin:0"
-      :class="{'ripe-malinka-gradient': this.option2, 'text-white': this.option2}" v-on:click="getThisSeasonWorks">2021秋</button>
+      :class="{'ripe-malinka-gradient': this.option2, 'text-white': this.option2}" @click="getThisSeasonWorks">2021秋</button>
     </div>
     <div class="row mt-4">
-    <div v-for="work in works" v-bind:key="work.id" style="display:inline-block; text-align:center" class="col-md-4 col-sm-5 offset-sm-1 mb-3">
+    <div v-for="work in works" :key="work.id" style="display:inline-block; text-align:center" class="col-md-4 col-sm-5 offset-sm-1 mb-3">
       <br/>
-      <a v-bind:href="'/works/' + work.title + '/?id=' + work.id" style="white-space:pre-wrap;word-wrap:break-word;display:inline-block; width:100%" >
-      <img v-bind:src="work.images.recommended_url" width="200px" height="auto" style="display:inline-block">
+      <a :href="'/works/' + work.title + '/?id=' + work.id" style="white-space:pre-wrap;word-wrap:break-word;display:inline-block; width:100%" >
+      <img :src="work.images.recommended_url" width="200px" height="auto" style="display:inline-block">
       {{ work.title }}</a>
     </div>
     </div>
