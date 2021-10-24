@@ -17,7 +17,9 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return view('rooms.index');
+        $user = User::find(Auth::id());
+        $rooms = $user->rooms;
+        return view('rooms.index', compact('rooms'));
     }
 
     /**
@@ -47,7 +49,7 @@ class RoomController extends Controller
         array_push($member, Auth::id());
         $room->users()->attach($member);
         
-        return var_dump($room->users);
+        return redirect('rooms.index');
 
     }
 
