@@ -13,7 +13,9 @@
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 @foreach ($rooms as $room)
-                <li class="list-group-item">{{ $room->name }} <span>（{{ $room->users->count() }}）</span></li>
+                <li class="list-group-item">
+                  <a href="{{route('chat.show', ['room_id' => $room->id])}}">{{ $room->name }} <span>（{{ $room->users->count() }}）</span></a>　
+                </li>
                 @endforeach
 
               </ul>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="height:400px;overflow-y: scroll;">
+    <div style="height:400px;overflow-y: scroll;" v-chat-scroll>
       <div v-for="message in this.messages" :key="message.index">
           <div class="balloon-chat right" v-if="user_check(message.user.id)">
             <figure class="icon-img"><img :src="message.user.profile_image" width="40px" height="40px">
@@ -9,6 +9,7 @@
             <div class="chatting">
               <p class="chat-text">{{ message.content }}</p>
             </div>
+            <small class="mt-auto pb-1">{{ message.created_at.slice(5, -3).replace('-', '/') }}</small>
           </div>
           <div class="balloon-chat left" v-else>
             <figure class="icon-img"><img :src="message.user.profile_image" width="40px" height="40px">
@@ -17,6 +18,7 @@
             <div class="chatting">
               <p class="chat-text">{{ message.content }}</p>
             </div>
+            <small class="mt-auto pb-1">{{ message.created_at.slice(5, -3).replace('-', '/') }}</small>
           </div>
       </div>
     </div>
@@ -51,12 +53,12 @@ flex-direction: row-reverse; /* 右から左に並べる */
 .chatting {
 position: relative;
 display: inline-block; /* 吹き出しが文字幅に合わせます */
-margin: 10px 20px;
+margin: 10px 17px 10px 5px;
 padding: 5px 20px;
 background: #ccffcc; /*吹き出しのカラーはここで変更*/
 text-align: left; /*テキストの位置はここで変更*/
 border-radius: 12px; /*吹き出しの丸み具合を変更*/
-max-width: 70%;
+max-width: 50%;
 }
 /* 吹き出しの三角部分の作成 */
 .chatting::after {
@@ -80,8 +82,8 @@ margin: 0;
 }
 /* アイコンの大きさ */
 .icon-img {
-width: 80px;
-height: 80px;
+width: 50px;
+height: 50px;
 }
 /* アイコンの名前の設定 */
 .icon-name {
