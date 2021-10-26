@@ -7,6 +7,7 @@ import FollowButton from './components/FollowButton'
 import MyAnimeSearch from './components/MyAnimeSearch'
 import PostComment from './components/PostComment'
 import AddMember from './components/AddMember'
+import Chat from './components/Chat'
 
 const app = new Vue({
   el:'#app',
@@ -18,6 +19,7 @@ const app = new Vue({
     MyAnimeSearch,
     PostComment,
     AddMember,
+    Chat
   }
 })
 
