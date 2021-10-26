@@ -26,10 +26,14 @@ class Room extends Model
     }
 
     /**
-     * ルームに参加ユーザーを割り当て
+     * ルーム内チャットとそれに紐づくユーザーの取得
      */
-    public function addUserToRoom(array $user_ids)
+    public function getChatsWithUser()
     {
-        $this->users()->attach($user_ids);
+        $chats = Chat::with('user:id,name,profile_image')
+        ->where('room_id', $this->id)
+        ->get();
+
+        return $chats;
     }
 }

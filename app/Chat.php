@@ -15,4 +15,6 @@ class Chat extends Model
         return $this->belongsTo('App\User');
     }
 
+    protected $fillable = ['content', 'room_id', 'user_id'];
+
 }
