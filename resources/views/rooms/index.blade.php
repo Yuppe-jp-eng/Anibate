@@ -2,6 +2,11 @@
 
 @section('content')
     @include('layouts.nav')
+    @if (session('flash_message'))
+    <div class="flash_message" style="background-color: crimson">
+        {{ session('flash_message') }}
+    </div>
+    @endif
     <div class="container mt-5">
       <div class="card mt-3">
         <div class="card-body">

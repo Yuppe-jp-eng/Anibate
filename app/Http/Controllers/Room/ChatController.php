@@ -14,6 +14,9 @@ class ChatController extends Controller
 {
     public function show(int $room_id) {
         $room = Room::find($room_id);
+        if (!$room->includeUser(Auth::id())) {
+            return redirect('rooms')->with('flash_message', '権限のない部屋に入ろうとしています');
+        }
         $chats = $room->getChatsWithUser();
         return view('chat.show', compact('chats', 'room'));
     }

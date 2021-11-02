@@ -36,4 +36,18 @@ class Room extends Model
 
         return $chats;
     }
+
+    /**
+     * チャットルームに参加しようとしているuserがルームメンバーか判定
+     * @return boolean
+     */
+    public function includeUser($auth_id){
+        $members = $this->users;
+        foreach ($members as $member) {
+            if($auth_id == $member->id){
+                return true;
+            }
+        }
+        return false;
+    }
 }
