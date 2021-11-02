@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="height:400px;overflow-y: scroll;" v-chat-scroll>
+    <div style="height:500px;overflow-y: scroll;" v-chat-scroll>
       <div v-for="message in this.messages" :key="message.index">
           <div class="balloon-chat right" v-if="user_check(message.user.id)">
             <figure class="icon-img"><img :src="message.user.profile_image" width="40px" height="40px">
@@ -115,7 +115,7 @@ export default {
         room_id: this.room_id
       })
       .then(res => {
-        this.messages = res.data
+        this.messages.push(res.data)
         this.message = ''
       })
       .catch(err => {
@@ -129,7 +129,12 @@ export default {
       else
         return false
       }
-  }
-
+  },
+  mounted() {
+    Echo.private('chat')
+    .listen('ChatEvent', (e) => {
+        this.messages.push(e.message)
+    });
+  },
 }
 </script>

@@ -15,8 +15,19 @@ class Chat extends Model
         return $this->belongsTo('App\User');
     }
 
+    /**
+     * チャットとuser情報をオブジェクトで取得
+     *
+     */
+    public function withUserInfo()
+    {
+        $chat = $this::with('user:id,name,profile_image')
+        ->find($this->id);
+
+        return $chat;
+
+    }
     protected
-    
     $fillable = ['content', 'room_id', 'user_id'];
 
 }
