@@ -49,7 +49,7 @@ class RoomController extends Controller
         array_push($member, Auth::id());
         $room->users()->attach($member);
         
-        return redirect('rooms.index');
+        return redirect()->route('rooms.index');
 
     }
 
