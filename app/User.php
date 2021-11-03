@@ -42,17 +42,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    #フォローフォロワーのリレーション
+    /**
+     * userのフォロワーを取得
+     */
     public function followers(): BelongsToMany
     {
         return $this->BelongsToMany('App\User', 'follows', 'followee_id', 'follower_id')->withTimestamps();
     }
 
+    /**
+     * userのフォローを取得
+     */
     public function followings(): BelongsToMany
     {
         return $this->belongsToMany('App\User', 'follows', 'follower_id', 'followee_id')->withTimestamps();
     }
-
+    /**
+     * userが$userにフォローされているか
+     */
     public function isFollowedBy(?User $user):bool
     {
         return $user
@@ -60,35 +67,58 @@ class User extends Authenticatable
         :false;
     }
 
+    /**
+     * userのフォロワー数
+     */
     public function getCountFollowersAttribute():int
     {
         return $this->followers()->count();
     }
-
+    /**
+     * userのフォロー数
+     */
     public function getCountFollowingsAttribute():int
     {
         return $this->followings()->count();
     }
 
-    #Postとの関係
+    /**
+     * userの投稿を取得
+     *  */
     public function posts():HasMany
     {
         return $this->hasMany('App\Post');
     }
 
-    #PostCommentとの関係
+    /**
+     * userのコメントを取得
+     */
     public function comments():HasMany
     {
         return $this->hasMany('App\PostComment');
     }
-    #WatchedAnimeとの関係
+
+    /**
+     * userの視聴済みアニメを取得
+     */
     public function watched_animes():HasMany
     {
         return $this->hasMany('App\WatchedAnime');
     }
-    #Likeとの関係
+    /**
+     * userのいいねした投稿を取得
+     */
+
     public function likes():BelongsToMany
     {
         return $this->belongsToMany('App\Post', 'likes')->withTimestamps();
+    }
+
+    /**
+     * userが参加している部屋を取得
+     */
+    public function rooms():BelongsToMany
+    {
+        return $this->belongsToMany('App\Room', 'user_rooms');
     }
 }

@@ -13,6 +13,9 @@
 
 
 #認証関連
+
+use Illuminate\Routing\Router;
+
 Auth::routes();
 
 #外部サービスログイン
@@ -67,4 +70,11 @@ Route::namespace('User')->prefix('users')->name('users.')->group(function(){
         Route::put('/{name}/follow', 'FollowController@follow')->name('follow');
         Route::delete('/{name}/follow', 'FollowController@unfollow')->name('unfollow');
     });
+});
+
+#ルームチャット機能
+Route::namespace('Room')->middleware('auth')->group(function(){
+    Route::resource('/rooms', RoomController::class);
+    Route::get('/chats/{room_id}', 'ChatController@show')->name('chat.show');
+    Route::post('/chats', 'ChatController@store')->name('chat.store');
 });

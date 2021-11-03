@@ -6,6 +6,10 @@ import WorkInformation from './components/WorkInformation'
 import FollowButton from './components/FollowButton'
 import MyAnimeSearch from './components/MyAnimeSearch'
 import PostComment from './components/PostComment'
+import AddMember from './components/AddMember'
+import Chat from './components/Chat'
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
 
 const app = new Vue({
   el:'#app',
@@ -16,6 +20,8 @@ const app = new Vue({
     FollowButton,
     MyAnimeSearch,
     PostComment,
+    AddMember,
+    Chat
   }
 })
 

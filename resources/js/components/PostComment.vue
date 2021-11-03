@@ -18,15 +18,15 @@
     <div v-for="comment in current_comments" v-bind:key="comment.id">
       <div class="card mt-3">
         <div class="card-body d-flex flew-row ">
-          <a  v-bind:href="'/users/' + comment.user.name" class="text-dark" style="display: inline">
-            <img v-bind:src="comment.user.profile_image " alt="画像" width="30px" height="30px" style="border-radius: 50%">
+          <a :href="'/users/' + comment.user.name" class="text-dark" style="display: inline">
+            <img :src="comment.user.profile_image " alt="画像" width="30px" height="30px" style="border-radius: 50%">
             <p>{{ comment.user.name }}</p>
           </a>
           <div class="d-flex ml-3" style="align-items:center">
             <p style="white-space:pre-wrap; word-wrap:break-word;">{{ comment.body }}</p>
           </div>
           <div style="text-align:right;margin-left:auto" v-if="user_check(comment.user_id)">
-            <a v-on:click="delete_comment(comment.id)"><i class="fas fa-trash"></i></a>
+            <a @click="delete_comment(comment.id)"><i class="fas fa-trash"></i></a>
           </div>
 
         </div>
