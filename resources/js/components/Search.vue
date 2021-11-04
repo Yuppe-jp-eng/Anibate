@@ -13,15 +13,32 @@
       <button type="button" class="btn btn-sm" style="margin:0"
       :class="{'ripe-malinka-gradient': this.option2, 'text-white': this.option2}" @click="getThisSeasonWorks">2021秋</button>
     </div>
-    <div class="row mt-4">
-    <div v-for="work in works" :key="work.id" style="display:inline-block; text-align:center" class="col-md-4 col-sm-5 offset-sm-1 mb-3">
-      <br/>
-      <a :href="'/works/' + work.title + '/?id=' + work.id" style="white-space:pre-wrap;word-wrap:break-word;display:inline-block; width:100%" >
-      <img :src="work.images.recommended_url" width="200px" height="auto" style="display:inline-block">
-      {{ work.title }}</a>
+      <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th scope="col">タイトル</th>
+          <th scope="col">エピソード数</th>
+          <th scope="col">視聴者数</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody v-for="work in works" :key="work.id">
+        <tr>
+          <td style="width:50%;white-space:pre-wrap;word-wrap:break-word;">
+            {{ work.title }}
+      　  </td>
+          <td>全{{ work.episodes_count }}話</td>
+          <td>{{ work.watchers_count }}人</td>
+          <td>
+            <a :href="'/works/' + work.title + '/?id=' + work.id">
+              <button type="button" class="btn btn-sm ripe-malinka-gradient" style="color:white;border-radius:70%">詳細</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     </div>
-    </div>
-  </div>
 </template>
 <script>
 export default {
@@ -47,7 +64,7 @@ export default {
   methods: {
     async search() {
       this.noworks = false
-      const queries = {filter_title: this.keyword}
+      const queries = {filter_title: this.keyword, fields: "id,title,episodes_count,watchers_count"}
       await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
@@ -58,7 +75,7 @@ export default {
       this.option1 = this.option2 = this.option3 = false
     },
     async getLastSeasonWorks() {
-      const queries = {filter_season: "2021-summer", sort_watchers_count: "desc", per_page: 50}
+      const queries = {filter_season: "2021-summer", sort_watchers_count: "desc", per_page: 50, fields: "id,title,episodes_count,watchers_count"}
       await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
@@ -71,7 +88,7 @@ export default {
     },
     async getThisSeasonWorks() {
       this.works = null
-      const queries = {filter_season: "2021-autumn", sort_watchers_count: "desc", per_page: 50}
+      const queries = {filter_season: "2021-autumn", sort_watchers_count: "desc", per_page: 50, fields: "id,title,episodes_count,watchers_count"}
       await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
