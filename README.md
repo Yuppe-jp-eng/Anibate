@@ -46,7 +46,8 @@ Anibateはアニメ好きな人が自分の感想を語り合ったり、視聴�
       - PostgreSQL 9.2.24
     - S3(ユーザー画像保存)
     - Route53
- 
+
+![infra](https://user-images.githubusercontent.com/63234480/140248722-a84c8e1a-5e93-4588-a5e2-1c07b034862c.jpg)
 ### 開発環境
 - Laradock
 
