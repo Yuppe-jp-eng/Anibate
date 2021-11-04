@@ -3,11 +3,16 @@
 <div v-for="work in work" v-bind:key="work.id">
   <div class="row">
     <div class="col-md-5 col-sm-12">
-      <img :src="work.images.recommended_url" alt="アニメ画像" width="100%" height="auto">
+      <!-- <img :src="work.images.recommended_url" alt="アニメ画像" width="100%" height="auto"> -->
       <h3>{{ work.title }}</h3>
       <p>{{ work.watchers_count }}人視聴</p>
       <a :href="work.official_site_url" target="_blank" rel="noopener noreferrer" class="mb-3">公式サイト</a><br>
       <a :href="work.wikipedia_url" target="_blank" rel="noopener noreferrer">Wikipedia</a>
+      <div class="d-flex mt-3">
+        <a :href="'/works/create?title=' + work.title + '&season=' + work.season_name_text" class="btn btn-primary">Myアニメに登録</a>
+        <a :href="'/posts/create?title=' + work.title" class="btn btn-danger">感想を投稿する！</a>
+      </div>
+
     </div>
     <div class="col-md-7 col-sm-12 row mt-3">
       <div class="col-md-4 col-sm-4 mb-3"  v-for="episode in episodes" :key="episode.id">
@@ -15,8 +20,7 @@
       </div>
     </div>
   </div>
-    <a :href="'/works/create?title=' + work.title + '&season=' + work.season_name_text" class="btn btn-primary">Myアニメに登録</a>
-    <a :href="'/posts/create?title=' + work.title" class="btn btn-danger">感想を投稿する！</a>
+
 </div>
 </div>
 </template>
