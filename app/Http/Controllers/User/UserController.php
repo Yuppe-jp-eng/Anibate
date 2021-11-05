@@ -16,7 +16,7 @@ class UserController extends Controller
     public function show(string $name)
     {
         $user = User::where('name', $name)->first()
-        ->load('posts.user', 'posts.post_comments');
+        ->load('posts.user', 'posts.postComments');
 
         $all_posts = $user->posts->sortByDesc('created_at')->paginate(5);
         $favorite_posts = $user->likes()

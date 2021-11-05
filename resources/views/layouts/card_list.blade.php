@@ -90,7 +90,7 @@
           <button type="button" class="btn shadow-none m-0 p-1" style="padding: 0">
             <a href="{{ route('posts.show', ['post' => $post])}}"><i class="fas fa-comment"></i></a>
           </button>
-              {{ $post->post_comments->count() }}
+              {{ $post->postComments->count() }}
         </div>
       </div>
       @endif
