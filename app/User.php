@@ -101,7 +101,7 @@ class User extends Authenticatable
     /**
      * userの視聴済みアニメを取得
      */
-    public function watched_animes():HasMany
+    public function watchedAnimes():HasMany
     {
         return $this->hasMany('App\WatchedAnime');
     }
