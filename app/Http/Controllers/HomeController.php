@@ -15,10 +15,10 @@ class HomeController extends Controller
             $posts = Post::query()
             ->whereIn('user_id', Auth::user()->followings()->pluck('followee_id'))
             ->orWhere('user_id', Auth::id())
-            ->latest()->get()->load('user', 'likes', 'post_comments')->paginate(8);
+            ->latest()->get()->load('user', 'likes', 'postComments')->paginate(8);
         } else {
             $posts = Post::all()->sortByDesc('created_at')
-            ->load('user', 'likes', 'post_comments')->paginate(8);
+            ->load('user', 'likes', 'postComments')->paginate(8);
         }
 
         return view('top', compact('posts'));

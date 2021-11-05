@@ -49,13 +49,13 @@ class Post extends Model
     /**
      * 投稿に対するコメントの取得
      */
-    public function post_comments():HasMany
+    public function postComments():HasMany
     {
         return $this->hasMany('App\PostComment');
     }
     
     #投稿に結びついたコメントとコメントに結びついたUserを配列で取得
-    public function get_comments_with_user(int $post_id):Object
+    public function getCommentsWithUser(int $post_id):Object
     {
         $comments = PostComment::with('user')
         ->where('post_id', $post_id)

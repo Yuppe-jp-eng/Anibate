@@ -23,7 +23,7 @@ class PostController extends Controller
     {
         $posts = Post::where('title', $title)->get()
         ->sortByDesc('created_at')
-        ->load('user', 'likes', 'post_comments')
+        ->load('user', 'likes', 'postComments')
         ->paginate(8);
 
         return view('posts.anime_index', compact('title', 'posts'));
@@ -31,7 +31,7 @@ class PostController extends Controller
     }
     public function show(Post $post)
     {
-        $comments = $post->get_comments_with_user($post->id);
+        $comments = $post->getCommentsWithUser($post->id);
 
         return view('posts.show',compact('post', 'comments'));
     }
