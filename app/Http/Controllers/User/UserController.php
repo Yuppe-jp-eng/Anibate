@@ -9,6 +9,8 @@ use App\WatchedAnime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Pagination\Paginator;
+
 class UserController extends Controller
 {
     public function show(string $name)
@@ -16,10 +18,10 @@ class UserController extends Controller
         $user = User::where('name', $name)->first()
         ->load('posts.user', 'posts.post_comments');
 
-        $all_posts = $user->posts->sortByDesc('created_at');
+        $all_posts = $user->posts->sortByDesc('created_at')->paginate(5);
         $favorite_posts = $user->likes()
         ->withPivot('created_at AS favorited_at')
-        ->orderBy('favorited_at', 'desc')->get();
+        ->orderBy('favorited_at', 'desc')->paginate(5);
 
         return view('users.show', compact('user', 'all_posts', 'favorite_posts'));
     }

@@ -32,11 +32,17 @@
         @foreach ($all_posts as $post)
           @include('layouts.card_list')
         @endforeach
+        <div class="pagination mt-4">
+          {{ $all_posts->links('vendor.pagination.simple-bootstrap-4')}}
+        </div>
       </div>
       <div id="favorite" class="tab-pane">
         @foreach ($favorite_posts as $post)
             @include('layouts.card_list')
         @endforeach
+        <div class="pagination mt-4">
+          {{ $favorite_posts->links('vendor.pagination.simple-bootstrap-4')}}
+        </div>
       </div>
       <div id="myanime" class="tab-pane">
         <my-anime-search
