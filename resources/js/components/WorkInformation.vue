@@ -16,7 +16,7 @@
     </div>
     <div class="col-md-7 col-sm-12 row mt-3">
       <div class="col-md-4 col-sm-4 mb-3"  v-for="episode in episodes" :key="episode.id">
-        {{ episode.number_text }}<br><a v-bind:href="'/posts/create?title=' + work.title + '&episode=' + episode.number_text + episode.title">{{ episode.title }}</a>
+        {{ episode.number_text }}<br><a v-bind:href="'/posts/create?title=' + work.title + '&episode=' + episode.number_text.replace('#', '＃') + episode.title">{{ episode.title }}</a>
       </div>
     </div>
   </div>
