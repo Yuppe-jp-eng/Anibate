@@ -9,9 +9,9 @@
     </div>
     <div>
       <button type="button" class="btn btn-sm" style="margin:0"
-      :class="{'ripe-malinka-gradient': this.option1, 'text-white': this.option1}" @click="getLastSeasonWorks">2021夏</button>
+      :class="{'ripe-malinka-gradient': this.option1, 'text-white': this.option1}" @click="getLastSeasonWorks">2021秋</button>
       <button type="button" class="btn btn-sm" style="margin:0"
-      :class="{'ripe-malinka-gradient': this.option2, 'text-white': this.option2}" @click="getThisSeasonWorks">2021秋</button>
+      :class="{'ripe-malinka-gradient': this.option2, 'text-white': this.option2}" @click="getThisSeasonWorks">2022冬</button>
     </div>
       <table class="table table-striped table-sm">
       <thead>
@@ -75,7 +75,7 @@ export default {
       this.option1 = this.option2 = this.option3 = false
     },
     async getLastSeasonWorks() {
-      const queries = {filter_season: "2021-summer", sort_watchers_count: "desc", per_page: 50, fields: "id,title,episodes_count,watchers_count"}
+      const queries = {filter_season: "2021-autumn", sort_watchers_count: "desc", per_page: 50, fields: "id,title,episodes_count,watchers_count"}
       await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
@@ -88,7 +88,7 @@ export default {
     },
     async getThisSeasonWorks() {
       this.works = null
-      const queries = {filter_season: "2021-autumn", sort_watchers_count: "desc", per_page: 50, fields: "id,title,episodes_count,watchers_count"}
+      const queries = {filter_season: "2022-winter", sort_watchers_count: "desc", per_page: 50, fields: "id,title,episodes_count,watchers_count"}
       await axios.get(this.url, {params: queries})
       .then(res => {
         this.works = res.data.works
